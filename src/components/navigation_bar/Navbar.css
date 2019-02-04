@@ -1,0 +1,29 @@
+#logo {
+    color: rgb(253, 253, 253);
+    display: inline-block;
+    letter-spacing: 5px;
+    font-size: 50px;
+    font-family: 'Nunito';
+    float: left;
+}
+
+nav {
+    padding: 25px;
+}
+
+nav ul {
+    list-style-type: none;
+    float: right;
+    padding-right: 25px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: rgb(253, 253, 253);
+    padding: 0 30px;
+    font-size: 16px;
+    font-family: 'Nunito';
+}

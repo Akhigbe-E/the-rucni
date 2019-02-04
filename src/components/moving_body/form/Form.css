@@ -1,0 +1,16 @@
+*{
+    font-family: 'Nunito';
+}
+#form{
+    text-align: left;
+    background-color: rgb(253, 253, 253);
+    border-radius: 20px;
+    box-shadow: 2px 5px 3px rgb(0, 3, 19);
+    margin-top: 0px;
+    position: absolute;
+    padding: 20px;
+    top: 30%;
+    left: 20%;
+    width: 50%;
+    z-index: 1;
+}

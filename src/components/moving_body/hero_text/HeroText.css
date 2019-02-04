@@ -1,0 +1,23 @@
+*{
+    font-family: 'Nunito';
+}
+#hero-text {
+    text-align: center;
+    color: rgb(253, 253, 253);
+    margin-top: 0px;
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    z-index: 1;
+}
+
+#hero-text button {
+    margin-top: 30px;
+    border: 1px solid #b34700;
+    border-radius: 5px;
+    box-shadow: 2px 5px 6px black;
+    padding: 8px 15px;
+    background-color: #cc5200;
+    color: #fff0e6;
+    font-size: 22px;
+}
