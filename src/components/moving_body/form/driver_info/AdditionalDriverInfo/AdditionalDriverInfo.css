@@ -1,0 +1,35 @@
+h4 {
+    font-size: 80%;
+}
+
+.control h6 {
+    float: left;
+    display: inline-block;
+}
+.control {
+
+}
+.control button {
+    display: inline-block;
+    width: 30px;
+    padding: 0;
+    border: 1px solid grey;
+    box-shadow: 0px 0px 0px white;
+    border-radius: 20px;
+    font-size: 30px;
+    color: white;
+    background-color: rgb(201, 92, 3);
+
+
+}
+.control img {
+    display: inline-block;
+    padding: 0px;
+}
+
+
+
+.number {
+    display: inline-block;
+    font-size: 105%
+}

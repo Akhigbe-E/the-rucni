@@ -1,0 +1,8 @@
+.centered {
+    text-align: center;
+}
+
+.radioButton {
+    margin: 0 10px;
+    display: inline-block;
+}

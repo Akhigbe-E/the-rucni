@@ -2,15 +2,35 @@
     font-family: 'Nunito';
 }
 #form{
-    text-align: left;
-    background-color: rgb(253, 253, 253);
-    border-radius: 20px;
-    box-shadow: 2px 5px 3px rgb(0, 3, 19);
+    text-align: center;
+    background-color: white;
+    border-radius: 30px;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    box-shadow: 1px 3px 10px rgb(87, 87, 87);
     margin-top: 0px;
     position: absolute;
     padding: 20px;
-    top: 30%;
-    left: 20%;
-    width: 50%;
+    opacity: 0.95;
+    top: 20%;
+    left: 21%;
+    width: 55%;
     z-index: 1;
+}
+
+button {
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 1px 2px 2px rgb(128, 128, 128);
+    background-color: rgb(255, 255, 255);
+    font-size: 13px;
+}
+
+#navigationNext {
+    float:right;
+    padding: 5px 15px;
+}
+#navigationPrevious {
+    float:left;
+    padding: 5px 15px;
 }

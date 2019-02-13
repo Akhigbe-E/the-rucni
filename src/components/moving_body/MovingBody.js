@@ -6,13 +6,18 @@ import HeroText from './hero_text/HeroText';
 class MovingBody extends Component {
 
     state = {
-        formOpen: true
+        formOpen: false
     };
+    getQuote = (input) => {
+        this.setState({
+            formOpen: input.formOpen
+        })
+    }
 
     showCurrentBody=()=>{
         if(this.state.formOpen){
             return <Form/>
-        }else return <HeroText/>
+        }else return <HeroText formOpen={this.getQuote}/>
     };
 
     render(){

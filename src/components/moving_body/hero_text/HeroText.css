@@ -3,12 +3,13 @@
 }
 #hero-text {
     text-align: center;
-    color: rgb(253, 253, 253);
+    color: rgb(1, 1, 48);
     margin-top: 0px;
     position: absolute;
-    top: 30%;
-    left: 20%;
+    top: 28%;
+    right: 1%;
     z-index: 1;
+    width: 100%;
 }
 
 #hero-text button {

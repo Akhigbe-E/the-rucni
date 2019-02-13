@@ -1,0 +1,11 @@
+#sector2 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: right;
+    color: rgba(245, 91, 35, 0.938);
+    margin-top: 20px;
+    position: absolute;
+    top: 108%;
+    left: 5%;
+    z-index: 1;
+    width: 60%;
+}

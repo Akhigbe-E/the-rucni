@@ -1,0 +1,167 @@
+
+h2{
+    text-align: center;
+    font-size: 260%;
+    margin: 10px auto;
+    color: rgb(0, 0, 70);
+}
+h3, h6 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+h5 {
+    text-align: center;
+}
+
+
+ul {
+    padding-left: 20px;
+}
+li{
+    display: inline-block;
+}
+
+#allign-years {
+    margin-bottom: 20px;
+    display: inline-block;
+}
+#arrange-years {
+    width: 100%;
+}
+button {
+    margin: 0 10px;
+    text-align: center;
+}
+.centered {
+    text-align: center;
+}
+.choice {
+    /* background-color: rgb(110, 110, 110); */
+    border-radius: 8px;
+    width: 400px;
+    padding: 8px 5px;
+    text-align: center;
+    margin: 0 auto;
+}
+.choice-selected {
+    display: inline-block;
+    margin: 0 10px;
+}
+.choice-selected button{
+    margin: 0 0px;
+    padding: 0;
+    border: 0px;
+}
+.choice-selected-item{
+    display: inline-block;
+    padding-left: 5px;
+}
+.choice-selected button:first-child{
+    display: inline-block;
+    margin: 0 0px;
+    padding-left: 5px;
+}
+
+.choice-selected-name {
+    font-size: 120%;
+}
+
+.choice-selected-close {
+    display: inline-block;
+    font-weight: 300;
+    padding: 5px 3px;
+    margin-left: 5px;
+    background-color: rgb(196, 9, 9);
+    color: rgb(255, 238, 238);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+button, input:focus {outline:0;}
+
+.additional-question {
+    text-align: center;
+    width: 100%;
+    margin: 100px auto;
+}
+
+.first-additional-question {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.additional-answer-button1 {
+    font-size: 19px;
+    box-shadow: 0px 0px 0px transparent;
+    border: 1px solid rgb(168, 76, 0);
+    padding: 10px 15px;
+    background-color: rgb(201, 92, 3);
+    color: rgb(253, 253, 253);
+    margin-top: 10px;
+}
+
+.additional-answer-button {
+    font-size: 19px;
+    box-shadow: 0px 0px 0px transparent;
+    border: 1px solid rgb(175, 175, 175);
+    padding: 10px 15px;
+    background-color: rgb(253, 253, 253);;
+    color: black;
+    margin-top: 10px;
+}
+#address-input {
+    padding-left: 15px; 
+    border-bottom: 1px solid rgb(175, 175, 175);
+    width: 500px;
+    font-size: 20px;
+}
+#display-summary {
+    margin-top: 20px;
+    margin-left: 20px;
+    padding-left: 20px;
+    float: left;
+}
+#display-summary h4{
+    font-size: 150%;
+}
+#car-image {
+    display: inline-block;
+}
+#model-id{
+    margin-top: 0px;
+}
+#add-vehicle-button {
+    display: block;
+    font-size: 120%;
+    margin: 10px auto;
+    /* margin-left: 20px; */
+    padding: 15px 250px;
+    box-shadow: 0px 0px 0px white;
+    border: 2px dashed grey;
+}
+#edit-remove-style {
+    float: right;
+    margin-top: 45px;
+    margin-right: 25px;
+}
+#edit-remove-style button{
+    display: inline-block;
+    background-color: rgb(199, 199, 199);
+    padding-bottom: 0px;
+    border: 0px solid white;
+    box-shadow: 0px 0px 0px white;
+    margin: 2px 5px;
+}
+#edit-remove-style button img{
+    margin-right: 5px;
+    padding-bottom: 0px;
+}
+#summary-list {
+    width: 80%
+}
+#item-id {
+    background-color: rgb(199, 199, 199);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}

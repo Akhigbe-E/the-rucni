@@ -1,5 +1,5 @@
 #logo {
-    color: rgb(253, 253, 253);
+    color: rgb(1, 1, 48);
     display: inline-block;
     letter-spacing: 5px;
     font-size: 50px;
@@ -22,7 +22,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: rgb(253, 253, 253);
+    color: rgb(1, 1, 48);
     padding: 0 30px;
     font-size: 16px;
     font-family: 'Nunito';
