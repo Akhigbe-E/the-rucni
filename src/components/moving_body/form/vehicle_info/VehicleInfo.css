@@ -3,14 +3,19 @@ h2{
     text-align: center;
     font-size: 260%;
     margin: 10px auto;
+    margin-bottom: 5px;
     color: rgb(0, 0, 70);
 }
 h3, h6 {
-    margin-top: 0px;
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 h5 {
     text-align: center;
+    margin-top: 10px;
+}
+.add-form-style{
+    margin-top: 50px;
 }
 
 
@@ -41,11 +46,11 @@ button {
     width: 400px;
     padding: 8px 5px;
     text-align: center;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 .choice-selected {
     display: inline-block;
-    margin: 0 10px;
+    margin: 10px 10px;
 }
 .choice-selected button{
     margin: 0 0px;
@@ -82,7 +87,9 @@ button, input:focus {outline:0;}
 .additional-question {
     text-align: center;
     width: 100%;
-    margin: 100px auto;
+    margin-top: 85px;
+    margin-left: auto;
+
 }
 
 .first-additional-question {
@@ -133,10 +140,11 @@ button, input:focus {outline:0;}
 }
 #add-vehicle-button {
     display: block;
-    font-size: 120%;
-    margin: 10px auto;
+    font-size: 100%;
+    margin: 2px auto;
+    margin-bottom: 30px;
     /* margin-left: 20px; */
-    padding: 15px 250px;
+    padding: 10px 25px;
     box-shadow: 0px 0px 0px white;
     border: 2px dashed grey;
 }
@@ -164,4 +172,29 @@ button, input:focus {outline:0;}
     background-color: rgb(199, 199, 199);
     border-radius: 10px;
     margin-bottom: 20px;
+}
+.save-and-continue{
+    padding: 15px 13px;
+    font-size: 18px;
+    background-color: #c55e1a;
+    border: 1px solid #b348003d;
+    color: whitesmoke;
+    margin-bottom: 25px;
+}
+
+#local-government-suggestion{
+    padding-top: 10px;
+    height: 50px;
+    width: 500px;
+    overflow: auto;
+    margin: 0px auto;
+    white-space: nowrap;
+}
+#local-government-suggestion button{
+    background-color: #c55e1a;
+    border: 1px solid #b348003d;
+    box-shadow: 0px 0px 0px white;
+    color: whitesmoke;
+    display: inline-block;
+    padding: 14px;
 }

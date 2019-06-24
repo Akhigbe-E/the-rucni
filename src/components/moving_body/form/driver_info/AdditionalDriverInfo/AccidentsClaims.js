@@ -35,6 +35,8 @@ class AccidentsClaims extends Component {
 
         //update state
         this.setState({ question });
+        console.log(this.state);
+        
                 
     }
 
@@ -43,46 +45,53 @@ class AccidentsClaims extends Component {
         category[e.target.value] +=1;
         this.setState({
             category
-        })
+        });
+        // this.sync()
     }
     decrement = (e) => {
         const category = this.state.category;
         category[e.target.value] -=1;
         this.setState({
             category
-        })
+        });
+        // this.sync()
     }
+    // sync = () => {
+    //     if(this.state.category.myFault+this.state.category.notMyFault > this.state.category.claims
+    //         || this.state.category.myFault+this.state.category.notMyFault < this.state.category.claims){
+    //             this.setState({
+    //                 claims: this.state.category.myFault+this.state.category.notMyFault
+    //             })
+    //     }
+    // }
 
     render(){
+        console.log(this.state.question.one);
+        
         return(
-            <div className="additional-question">
-                <img src={require("./AdditionalDriverInfoImages/accident.png")} alt="wallet"/>
-                <h3>Any accidents, tickets, or claims in the past 3 years?</h3>      
-                <h6>What should you add here?</h6>
-                <button className={this.state.question.one ? "additional-answer-button1" : "additional-answer-button"} name="question" value="one" onClick={this.chooseAnswer}>Yes</button>
-                <button className={this.state.question.two ? "additional-answer-button1" : "additional-answer-button"} name="question" value="two" onClick={this.chooseAnswer}>No</button>
+            <div>
             
-                <div id="numberOfAccidents" hidden={this.state.question.one === false}><br/>
+                <div id="numberOfAccidents" hidden={(this.props.yes === false && this.props.no === false) || this.props.no === true}><br/>
                     <h3>How many of each?</h3>
                     <h5>Accidents that were my fault</h5>
                         <div className="control">
-                            <button disabled={ this.state.category.myFault === 0 } value="myFault" onClick={this.decrement}>-</button> 
+                            <button type="button" disabled={ this.state.category.myFault === 0 } value="myFault" onClick={this.decrement}>-</button> 
                             <div className="number">{ this.state.category.myFault }</div>
-                            <button value="myFault" onClick={this.increment}>+</button>
+                            <button type="button" value="myFault" onClick={this.increment}>+</button>
                         </div>   
                     
                     <h5>Accidents that were not my fault </h5>
                     <div className="control">
-                        <button disabled={ this.state.category.notMyFault === 0 } value="notMyFault" onClick={this.decrement}>-</button> 
+                        <button type="button" disabled={ this.state.category.notMyFault === 0 } value="notMyFault" onClick={this.decrement}>-</button> 
                         <div className="number">{ this.state.category.notMyFault }</div>
-                        <button value="notMyFault" onClick={this.increment}>+</button>
+                        <button type="button" value="notMyFault" onClick={this.increment}>+</button>
                     </div>
 
-                    <h5>Claims Weather, vandalism, uninsured motorist damage, etc.)</h5>
+                    <h5>Claims (weather, vandalism, uninsured motorist damage, etc.)</h5>
                     <div className="control">
-                        <button disabled={ this.state.category.claims === 0 } value="claims" onClick={this.decrement}>-</button> 
+                        <button type="button" disabled={ this.state.category.claims === 0} value="claims" onClick={this.decrement}>-</button> 
                         <div className="number">{ this.state.category.claims }</div>
-                        <button value="claims" onClick={this.increment}>+</button>
+                        <button type="button" disabled={this.state.category.claims >= (this.state.category.myFault+this.state.category.notMyFault)} value="claims" onClick={this.increment}>+</button>
                     </div>
                 </div>
             </div>

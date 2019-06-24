@@ -1,0 +1,18 @@
+#discount-question-list {
+    margin: 30px 25px;
+}
+
+#discount-question-item {
+    width: 90%;
+}
+
+#discount-question {
+    float: left;
+    margin: 20px auto;
+}
+
+#discount-answer{
+    float: right;
+    margin: 20px auto;
+    margin-left: 20px;
+}

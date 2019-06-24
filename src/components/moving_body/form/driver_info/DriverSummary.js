@@ -1,41 +1,38 @@
 import React, { Component } from 'react';
 import '../vehicle_info/VehicleInfo.css'
 
+import DriverSummaryItem from './DriverSummaryItem';
+
 class DriverSummary extends Component {
 
-    state = {
-        drivers: [],
-        driver: {}
-    };
-
-    editItem = (driver) => {
-        this.props.editDriver(driver);
-        console.log(driver);
-        
-    }
-
-    uniqueArray = [...new Set(this.props.driver)];
+    uniqueArray = [...new Set(this.props.drivers)];
     summary = this.uniqueArray.map((driver)=>{
+        
+        return(
+            <DriverSummaryItem 
+                    proceed = {this.props.proceed}
+                    notProceed = {this.props.notProceed}
+                    driver = { driver }
+                    editClick = {this.props.editClick}
+                    deleteClick = { this.props.deleteClick }
+            /> 
+        );   
+    }) 
+    componentDidMount(){
+        window.scrollTo(0, 0);
+    }
+    displayButton = () => {
+        if(this.props.final) {
             return(
-                <div id="item-id">
-                    <li id="summary-list">
-                <div id="display-summary">
-                    <div id="car-image">
-                        <img src={require('./AdditionalDriverInfo/AdditionalDriverInfoImages/user.png')} alt="driverimage"/>
-                    </div>
-                    <h4>{driver.firstName} {driver.lastName}</h4>
-                    <h5 id="model-id">{driver.gender}</h5>
-                </div>
-                <div id="edit-remove-style">
-                    <button type="button" onClick={this.editItem}><img src={require('./AdditionalDriverInfo/AdditionalDriverInfoImages/edit.png')} alt="Edit" /><div>Edit</div></button><button><img src={require('./AdditionalDriverInfo/AdditionalDriverInfoImages/remove.png')} alt=""/><div>Remove</div></button>
-                </div><br/>
-                </li><br/>
-                </div>
-            );
-            
-        }) 
+                <button className="save-and-continue" onClick={this.props.finalStep} disabled={this.props.notProceed}>Get Quote</button>
+            )
+        }else{
+            return(
+                <button className="save-and-continue" onClick={this.props.nextStep} disabled={this.props.notProceed}>Save and Continue</button>
+            )
+        }
+    }
     render(){
-
         return(
             <div>
                 <h2>Does this information look correct?</h2>
@@ -44,27 +41,9 @@ class DriverSummary extends Component {
                 <div>
                     <button id="add-vehicle-button" onClick={this.props.addDriver}>+ Add Driver</button>
                 </div>
-                <button onClick={this.props.nextStep}>Save and Continue</button>
+                {this.displayButton()}
             </div>
-            // <div>
-            //     <h2>Does this information look correct?</h2>
-            //     <h5>If you have another car, you can add it now.</h5><br/>
-
-            //     <div id="display-summary">
-            //         <div id="car-image">
-            //             <img src={this.state.image} alt="carimage"/>
-            //         </div>
-            //         <h4>{this.state.year} {this.state.make}</h4>
-            //         <h5 id="model-id">{this.state.model}</h5>
-            //     </div>
-            //     <div id="edit-remove-style">
-            //         <button><img src={require('./AdditionalVehicleImages/edit.png')} alt="Edit" /><div>Edit</div></button><button><img src={require('./AdditionalVehicleImages/remove.png')} /><div>Remove</div></button>
-            //     </div><br/>
-            //     <div>
-            //         <button id="add-vehicle-button">+ Add Vehicle</button>
-            //     </div>
-            //     <button>Save and Continue</button>
-            // </div>
+            
         );
     }
 };

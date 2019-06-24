@@ -6,3 +6,34 @@
     margin: 0 10px;
     display: inline-block;
 }
+.err-text{
+    color: rgb(126, 7, 7);
+    margin-top: 10px;
+}
+.under-err-text{
+    padding: 1px;
+}
+#input{
+    display: block;
+    margin-top:0px;
+    margin: 0px 230px; 
+}
+#input-radio{
+    text-align: left;
+    width: 50%;
+    margin-left: 230px;
+}
+.input-title{
+    font-size: 11px;
+    text-align: left;
+    margin-left: 230px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+.input-title-radio{
+    font-size: 11px;
+    text-align: left;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}

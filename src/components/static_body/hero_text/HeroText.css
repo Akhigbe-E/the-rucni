@@ -1,0 +1,49 @@
+*{
+    font-family: 'Nunito';
+}
+#hero-text {
+    text-align: center;
+    color: rgb(1, 1, 48);
+    margin-top: 0px;
+    position: absolute;
+    top: 28%;
+    right: 1%;
+    z-index: 1;
+    width: 100%;
+}
+
+#hero-text button {
+    margin-top: 30px;
+    border: 1px solid #b348003d;
+    border-radius: 15px;
+    padding: 8px 15px;
+    background-color: #a84300;
+    color: #fffcfa;
+    
+    font-size: 22px;
+    transition:0.5s;
+}
+#hero-text button:hover{
+    transition:1s;
+    border-radius: 5px;
+    padding: 8px 15px;
+    background-color: #cc5200;
+    color: #fff0e6;
+    font-size: 22px;
+}
+#side-content{
+    text-align: center;
+    float: right;
+    position: absolute;
+    top:165%;
+    right: 4%;
+    /* background-color: #b348001a; */
+    border-radius: 10px;
+    padding: 5px 15px; 
+    padding-bottom: 10px; 
+}
+#side-text{
+    display: inline-block;
+    text-align: left;
+    font-size: 20px;
+}

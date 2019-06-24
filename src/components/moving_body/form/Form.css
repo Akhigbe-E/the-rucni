@@ -12,13 +12,14 @@
     position: absolute;
     padding: 20px;
     opacity: 0.95;
-    top: 20%;
+    top: 15%;
     left: 21%;
     width: 55%;
     z-index: 1;
 }
 
 button {
+    cursor: pointer;
     padding: 5px;
     border-radius: 8px;
     box-shadow: 1px 2px 2px rgb(128, 128, 128);
@@ -27,10 +28,94 @@ button {
 }
 
 #navigationNext {
-    float:right;
-    padding: 5px 15px;
+    margin-top: 10px;
+    /* float:right; */
 }
 #navigationPrevious {
     float:left;
     padding: 5px 15px;
+}
+#title-band {
+    background-color: rgb(48, 48, 48);
+    border-top-right-radius: 25px;
+    color: white;
+    margin-bottom: 20px;
+}
+.title-band-item {
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 20px;
+    padding: 4px 7px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(66, 66, 66);
+}
+#footer-band {
+    background-color: rgb(48, 48, 48);
+    border-bottom-left-radius: 25px;
+}
+#footer-band-text {
+    color:rgb(36, 36, 36);
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 15px;
+}
+
+/* appear - on page load */
+.fade-appear {
+    opacity: 0;
+    z-index: 1;
+}
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 600ms linear;
+}
+
+/* enter */
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 600ms linear;
+}
+
+/* exit */
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 5000ms linear;
+}
+.fade-exit-done {
+  opacity: 0;
+}
+
+/* slide enter */
+.slide-enter {
+  opacity: 0;
+  transform: scale(0.97) translateY(5px);
+  z-index: 1;
+}
+.slide-enter.slide-enter-active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: opacity 3000ms linear 1000ms, transform 3000ms ease-in-out 1000ms;
+}
+
+/* slide exit */
+.slide-exit {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    
+}
+.slide-exit.slide-exit-active {
+    opacity: 0;
+    transform: scale(0.97) translateY(5px);
+    transition: opacity 1500ms linear, transform 1500ms ease-out;
+}
+.slide-exit-done {
+  opacity: 0;
 }

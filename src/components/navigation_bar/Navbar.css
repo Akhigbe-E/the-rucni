@@ -7,23 +7,44 @@
     float: left;
 }
 
-nav {
+/* nav {
     padding: 25px;
 }
 
-nav ul {
+#nav-ul {
     list-style-type: none;
     float: right;
     padding-right: 25px;
 }
 
-nav ul li {
+#nav-ul-li {
     display: inline;
 }
 
-nav ul li a {
+#nav-li-a {
     color: rgb(1, 1, 48);
     padding: 0 30px;
     font-size: 16px;
     font-family: 'Nunito';
+} */
+
+
+#nav-style{
+    padding-left:15px;
+    text-align: left;
+    width: 100%;
+    /* background-color: whitesmoke;
+    box-shadow:0 2px 2px 0px rgba(0, 0, 0, 0.363); */
+}
+
+
+#nav-ul {
+    display: inline-block
+}
+#nav-header {
+    font-size: 55px;
+    float: left;
+    padding-left: 30x;
+    font-family: 'Nunito';
+    color: rgb(0, 0, 27)
 }

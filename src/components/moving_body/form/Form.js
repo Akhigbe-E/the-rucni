@@ -6,7 +6,13 @@ import DriverInfo from './driver_info/DriverInfo';
 import DriverSummary from './driver_info/DriverSummary'
 import VehicleInfo from './vehicle_info/VehicleInfo';
 import AdditionalVehicleInfo from './vehicle_info/AdditionalVehicleInfo';
-import AdditionalDriverInfo from './driver_info/AdditionalDriverInfo/AdditionalDriverInfo'
+import AdditionalDriverInfo from './driver_info/AdditionalDriverInfo/AdditionalDriverInfo';
+import Discount from './discount_info/Discount';
+import Quote from "./quote/Quote";
+
+import { CSSTransition } from "react-transition-group";
+
+import {mutual, cornerstone, aiico, sovereignTrust, zenith} from "../form/quote_logic/QuoteLogic";
 
 import './Form.css'
 import VehicleSummary from "./vehicle_info/VehicleSummary";
@@ -29,78 +35,119 @@ class Form extends Component {
                 model: '',
                 image: '',
                 notFilled: true,
-                editClose: true
-            },
-            additionalInfovehicle: {
-                question1: {
-                    one: false,
-                    two: false,
-                    three: false
-                },
-                question2: {
-                    one: false,
-                    two: false,
-                    three: false,
-                    four: false
-                },
-                question3: '',
-                notFilled: true
-            },
-            additonalInfodriver: {
-                question1: {
-                    one: false,
-                    two: false,
-                    three: false
-                },
-                question2: {
-                    one: false,
-                    two: false,
-                    three: false,
-                    four: false
-                },
-                question3: {
-                    question: {
+                editClose: true,
+                additionalInfovehicle: {
+                    question1: {
                         one: false,
-                        two: false
+                        two: false,
+                        three: false
                     },
-                    category: {
-                        myFault: 0,
-                        notMyFault: 0,
-                        claims: 0
-                    }  
+                    question2: {
+                        one: false,
+                        two: false,
+                        three: false,
+                        four: false
+                    },
+                    question3: '',
+                    notFilled: true
                 }
             },
             drivers: [],
             driver: {
+                id: uuid(),
                 firstName: '',
                 lastName: '',
                 birthDate: '',
                 emailAddress: '',
                 phoneNumber: '',
                 gender: '',
-                notFilled:true
+                notFilled: true,
+                editClose: true,
+                additionalInfodriver: {
+                    question1: {
+                        one: false,
+                        two: false,
+                        three: false
+                    },
+                    question2: {
+                        one: false,
+                        two: false,
+                        three: false,
+                        four: false
+                    },
+                    question3: {
+                        question: {
+                            one: false,
+                            two: false
+                        },
+                        category: {
+                            myFault: 0,
+                            notMyFault: 0,
+                            claims: 0
+                        }  
+                    },
+                    notFilled: true
+                }
             }
-        }
+        },
+        final: false,
+        newEntity: false,
+        validated: false
         
     };
-    
+    componentDidMount(){
+        window.scrollTo(0, 0);
+    }
 
     handleNextClick=()=>{
         this.onNextClick();
     };
+
     onNextClick=()=>{
-       const { step } = this.state
+       const { step } = this.state;
+       if(this.state.newEntity === true && (this.state.step === 3 || this.state.step === 6)){
+            this.setState({
+                newEntity: false
+            })
+        }
        this.setState({
            step: step+1
        })
     };
 
+    finalStep = () => {
+        let { step } = this.state
+        step = 8;
+       this.setState({
+           step 
+       })
+    }
+    noNewEntityStep = () => {
+        let { step } = this.state
+        if(step === 1 || step === 2){
+            step = 3;
+        }else step = 6 
+       this.setState({
+           step 
+       })
+    }
+
     handlePreviousClick=(e)=>{
         this.onPreviousClick();
     };
-    
+
     onPreviousClick=()=>{
        const { step } = this.state
+       if(step === 4){
+            this.setState({notProceed: false})
+       }
+    //    if(step === 5){
+    //        console.log(step)
+    //     this.setState({
+    //         validated: true
+    //     })
+    //     console.log(this.state)
+    // }
        this.setState({
            step: step-1
        })
@@ -122,8 +169,6 @@ class Form extends Component {
         // if(!this.checkRedundantData(input)){
             const name = input.name;
             const field = this.state.field;
-            // const stateAttr = field[name];
-            // field[name] = [...stateAttr, input.field]
             field[name] = input.field;
             this.setState({
                 field
@@ -134,10 +179,10 @@ class Form extends Component {
     }
 
     handleVehicleInput= input =>{
+        console.log(input);
+        
         const name = 'vehicle';
         const field = this.state.field;
-        // const stateAttr = field[name];
-        // field[name] = [...stateAttr, input]
         field[name] = input
         this.setState({
             field
@@ -146,7 +191,6 @@ class Form extends Component {
     }
 
     newVehicleInput=()=>{
-        console.log(this.state)
         const field = this.state.field;
         field.vehicle = {
             id: uuid(),
@@ -159,44 +203,89 @@ class Form extends Component {
             model: '',
             image: '',
             notFilled: true,
-            editClose: true
+            editClose: true,
+            additionalInfovehicle: {
+                question1: {
+                    one: false,
+                    two: false,
+                    three: false
+                },
+                question2: {
+                    one: false,
+                    two: false,
+                    three: false,
+                    four: false
+                },
+                question3: '',
+                notFilled: true
+            }
         };
         this.setState({
             field,   
-            step: 1
+            step: 1,
         });
-        console.log(this.state.field.vehicle.editClose);
+        if(this.state.field.vehicles.length > 0){
+            this.setState({ newEntity: true})
+        }
     }
+
     newDriverInput=()=>{
         const field = this.state.field;
         field.driver= {
+            id: uuid(),
             firstName: '',
             lastName: '',
             birthDate: '',
             emailAddress: '',
             phoneNumber: '',
             gender: '',
-            notFilled:true
+            editClose: true,
+            notFilled:true,
+            additionalInfodriver: {
+                question1: {
+                    one: false,
+                    two: false,
+                    three: false
+                },
+                question2: {
+                    one: false,
+                    two: false,
+                    three: false,
+                    four: false
+                },
+                question3: {
+                    question: {
+                        one: false,
+                        two: false
+                    },
+                    category: {
+                        myFault: 0,
+                        notMyFault: 0,
+                        claims: 0
+                    }  
+                },
+                notFilled: true
+            },
         };
         this.setState({
             field,
             step: 4
         });
+        if(this.state.field.drivers.length > 0){
+            this.setState({ newEntity: true})
+        }else this.setState({ newEntity: false})
     }
+    
     addVehicleInput = ()=> {
-        // const name = 'vehicle';
-        
         const field = this.state.field;
         const stateAttr = field.vehicles;
         field.vehicles = [...stateAttr, field.vehicle]
         this.setState({
             field,
-        });
-        
+        });        
     }
+
     addDriverInput = ()=> {
-        // const name = 'vehicle';
-        
         const field = this.state.field;
         const stateAttr = field.drivers;
         field.drivers = [...stateAttr, field.driver]
@@ -205,30 +294,33 @@ class Form extends Component {
         });
         
     }
-    editDriver = (driver) =>{
+
+    editVehicle = (attr) => {
         const field = this.state.field;
-        field.driver = driver
+        field.vehicle = attr
         this.setState({
             field,
-            step: 4
-        })   
-    }
-
-    deleteVehicle = (vehicle) => {
-        const id  = vehicle.id;
-        const field = this.state.field;
-        const filtered = field.vehicles.filter(v => v.id !== id)
-        field.vehicles = filtered;
-        
-        this.setState({
-            field
+            step: 1
         })
     }
 
-    editSubmit=(attr) => {
+    editDriver = (attr) =>{
         const field = this.state.field;
+        field.driver = attr
+        this.setState({
+            field,
+            step: 4
+        })  
+        console.log(this.state);
+         
+    }
+
+    editVehicleSubmit=(attr) => {
+        const field = this.state.field;
+        
         const scannedVehicles = field.vehicles.map( vehicle => {
             if(vehicle.id === attr.id){
+                const { question1, question2, question3, notFilled } = attr.additionalInfovehicle
                 vehicle = {  
                     id: attr.id,
                     carInfo:null,
@@ -239,54 +331,147 @@ class Form extends Component {
                     models: attr.models,
                     model: attr.model,
                     image: attr.image,
-                    notFilled: false
+                    notFilled: false,
+                    additionalInfovehicle: {
+                        question1: {
+                            one: question1.one,
+                            two: question1.two,
+                            three: question1.three
+                        },
+                        question2: {
+                            one: question2.one,
+                            two: question2.two,
+                            three: question2.three,
+                            four: question2.four
+                        },
+                        question3: question3,
+                        notFilled: notFilled
+                    }
                 }
             }
             return vehicle
         })
         field.vehicles = scannedVehicles;
         field.vehicle = attr
+        let step = this.state.step
+        if(step === 2) {
+            step = 3
+        }else {
+            step = 2
+        }
         this.setState({
             field,
-            step:2 
+            step
         })
     };
-    editVehicle = (attr) => {
-        const field = this.state.field;
-        field.vehicle = attr
-        console.log(attr);
-        
+
+    editDriverSubmit=(attr) => { 
+        const field = this.state.field;        
+        const scannedDrivers = field.drivers.map( driver => {
+            console.log(attr);
+            
+            console.log(driver.emailAddress);
+            if(driver.emailAddress === attr.field.emailAddress){
+                
+                const { question1, question2, question3 } = attr.field.additionalInfodriver
+                
+                driver = {
+                    firstName: attr.field.firstName,
+                    lastName: attr.field.lastName,
+                    birthDate: attr.field.birthDate,
+                    emailAddress: attr.field.emailAddress,
+                    phoneNumber: attr.field.phoneNumber,
+                    gender: attr.field.gender,
+                    notFilled:true,
+                    additionalInfodriver: {
+                        question1: {
+                            one: question1.one,
+                            two: question1.two,
+                            three: question1.three
+                        },
+                        question2: {
+                            one: question2.one,
+                            two: question2.two,
+                            three: question2.three,
+                            four: question2.four
+                        },
+                        question3: {
+                            question: {
+                                one: question3.question.one,
+                                two: question3.question.two
+                            },
+                            category: {
+                                myFault: question3.category.myFault,
+                                notMyFault: question3.category.notMyFault,
+                                claims: question3.category.claims
+                            }  
+                        }
+                    }
+                }
+            }
+            return driver
+        })
+        field.drivers = scannedDrivers;
+        field.driver = attr.field
+        let step = this.state.step
+        if(step === 5) {
+            step = 6
+        }else {
+            step = 5
+        }
         this.setState({
             field,
-            step: 1
+            step
+        })
+        
+    };
+
+    deleteVehicle = (id) => {
+        // const id  = vehicle.id;
+        const field = this.state.field;
+        const filtered = field.vehicles.filter(v => v.id !== id)
+        field.vehicles = filtered;
+        this.setState({
+            field
+        })
+    }
+    deleteDriver = (id) => {
+        // const id  = vehicle.id;
+        const field = this.state.field;
+        const filtered = field.drivers.filter(v => v.id !== id)
+        field.drivers = filtered;
+        this.setState({
+            field
         })
     }
 
     handleAddVehicleInput= input =>{
-        const name = 'additionalInfovehicle';
+        // const name = 'vehicle';
         const field = this.state.field;
-        field[name] = input;
+        field.vehicle = input;
         this.setState({
             field
         });
-        console.log(this.state.additonalInfovehicle)
+        console.log(this.state);
+        
     }
+    
     handleAddDriverInput= input =>{
-        const name = 'additonalInfodriver';
         const field = this.state.field;
-        field[name] = input;
+        field.driver = input.field;
         this.setState({
             field
         });
     }
-    proceed = () => {
+
+    proceedVehicle = () => {
         console.log(this.state.field.vehicles.length);
         
         if(this.state.field.vehicles.length < 1){
             this.setState({
-                notProceed: true
+                notProceed: true,
             });
-            console.log(this.state.notProceed);
+            //if step is ... go to the info page
         }else{
             this.setState({
                 notProceed: false
@@ -294,43 +479,120 @@ class Form extends Component {
         }
     }
 
+    proceedDriver = () => {
 
-    render(){
+        if(this.state.field.drivers.length < 1){
+            this.setState({
+                notProceed: true,
+            });
+        }else{
+            this.setState({
+                notProceed: false
+            });
+        }
+    }
+
+    title = () => {
+        return(
+            <div id="title-band">{this.titleVehicle()}{this.titleDriver()}{/*this.titleQuote()*/}</div>
+        )
+    }
+    
+    clickTitleVehicle = () => {
+        this.setState({step: 3})
+    }
+
+    titleVehicle = () => {
+        if (this.state.field.vehicles.length > 0) {
+            if (this.state.field.vehicles.length > 1) {
+                return <div onClick = {this.clickTitleVehicle} className="title-band-item">{ this.state.field.vehicles.length } Vehicles</div>
+            } else {
+                return <div onClick = {this.clickTitleVehicle} className="title-band-item">{ this.state.field.vehicles.length } Vehicle</div>
+            }
+        }
+    }
+
+    clickTitleDriver = () => {
+        this.setState({step: 6})
+    }
+
+    titleDriver = () => {
+        if (this.state.field.drivers.length > 0) {
+            if (this.state.field.drivers.length > 1) {
+                return <div onClick = {this.clickTitleDriver} className="title-band-item">{ this.state.field.drivers.length } Drivers</div> 
+            } else {
+                return <div onClick = {this.clickTitleDriver} className="title-band-item">{ this.state.field.drivers.length } Driver</div> 
+            }
+        }
+    }
+    titleQuote = () => {
+        let quotes = mutual(this.state).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        
+        return <div className="title-band-item">Premium: N { quotes } per Annum</div> 
+    }
+    footer = () => {
+        // return(
+        //     <div id="footer-band">
+        //         <div id="footer-band-text">Akhigbe Emmanuel </div>
+        //     </div>
+        // );
+    }
+    reachFinal = () => {
+        this.setState({
+            final: true
+        })
+    }
+    render(){        
         const { step } = this.state;
-        const { vehicle, vehicles, additionalInfovehicle, additonalInfodriver, driver, drivers} = this.state.field;
-        
-        
+        let { vehicle, vehicles, driver, drivers} = this.state.field;
+                
         switch (step) {
             case 1:
             return(
                 <div id='form'>
+                    {this.title()}
                     <VehicleInfo
                         vehicle = {vehicle}
-                        addVehicle = {this.addVehicleInput}
+                        final = { this.state.final }
+                        finalStep = {this.finalStep}
+                        newEntity = {this.state.newEntity}
+                        noNewEntityStep = {this.noNewEntityStep}
+                        // addVehicle = {this.addVehicleInput}
                         nextStep = { this.handleNextClick }
                         handleSubmit={this.handleVehicleInput}
-                        onEditSubmit = {this.editSubmit}
-                        
+                        onEditSubmit = {this.editVehicleSubmit} 
                     />
+                    {this.footer()}
                 </div>
             );
             case 2:
             return(
                 <div id='form'>
+                    {this.title()}
                     <AdditionalVehicleInfo 
-                        addInfovehicle = {additionalInfovehicle}
+                        vehicle = {vehicle}
+                        final = { this.state.final }
+                        finalStep = {this.finalStep}
+                        newEntity = {this.state.newEntity}
+                        noNewEntityStep = {this.noNewEntityStep}
+                        onEditSubmit = {this.editVehicleSubmit}
+                        addVehicle = {this.addVehicleInput}
                         nextStep = { this.handleNextClick }
                         previousStep = { this.handlePreviousClick }
                         handleSubmit={this.handleAddVehicleInput}
-                        proceed = {this.proceed}
+                        proceed = {this.proceedVehicle}
                     />
+                    {this.footer()}
                 </div>
             );
             case 3:
             return(
                 <div id='form'>
+                    {this.title()}
                     <VehicleSummary 
                         vehicles = { vehicles }
+                        final = { this.state.final }
+                        finalStep = {this.finalStep}
                         editClick = {this.editVehicle}
                         deleteClick = { this.deleteVehicle }
                         addVehicle = {this.newVehicleInput}
@@ -338,40 +600,91 @@ class Form extends Component {
                         previousStep = { this.handlePreviousClick }
                         handleSubmit={this.handleAddDriverInput} 
                         notProceed = {this.state.notProceed}
-                        proceed = {this.proceed}/>
+                        proceed = {this.proceedVehicle}
+                    />
+                        {this.footer()}
                 </div>
             );
             case 4:
             return(
                 <div id='form'>
+                    {this.title()}
                     <DriverInfo 
                         driver = {driver}
-                        addDriver = {this.addDriverInput}
+                        final = { this.state.final }
+                        finalStep = {this.finalStep}
+                        newEntity = {this.state.newEntity}
+                        noNewEntityStep = {this.noNewEntityStep}
                         nextStep = { this.handleNextClick }
                         previousStep = { this.handlePreviousClick }
-                        handleSubmit={this.handleDriverInput} />
+                        handleSubmit={this.handleDriverInput}
+                        onEditSubmit = {this.editDriverSubmit} 
+                        validated = {this.state.validated}
+                    />
+                    {this.footer()}
                 </div>
             );
             case 5:
             return(
                 <div id='form'>
+                    {this.title()}
                     <AdditionalDriverInfo 
-                        addInfodriver = {additonalInfodriver}
+                        driver = { driver }
+                        final = { this.state.final }
+                        finalStep = {this.finalStep}
+                        newEntity = {this.state.newEntity}
+                        noNewEntityStep = {this.noNewEntityStep}
                         nextStep = { this.handleNextClick }
+                        addDriver = {this.addDriverInput}
                         previousStep = { this.handlePreviousClick }
-                        handleSubmit={this.handleAddDriverInput} />
+                        handleSubmit={this.handleAddDriverInput} 
+                        onEditSubmit = {this.editDriverSubmit}
+                        proceed = {this.proceedDriver}
+                    />
+                    {this.footer()}
                 </div>
             );
             case 6:
             return(
                 <div id='form'>
+                    {this.title()}
                     <DriverSummary 
-                        driver = {drivers}
+                        drivers = {drivers}
+                        final = { this.state.final }
+                        finalStep = {this.finalStep}
+                        proceed = {this.proceedDriver}
+                        notProceed = {this.state.notProceed}
                         addDriver = {this.newDriverInput}
-                        editDriver = {this.editDriver}
+                        editClick = {this.editDriver}
+                        deleteClick = {this.deleteDriver}
                         nextStep = { this.handleNextClick }
                         previousStep = { this.handlePreviousClick }
-                        handleSubmit={this.handleDriverInput} />
+                        handleSubmit={this.handleDriverInput} 
+                    />
+                    {this.footer()}
+                </div>
+            );
+            case 7:
+            return(
+                <div id='form'>
+                    {this.title()}
+                    <Discount 
+                        previousStep = { this.handlePreviousClick }
+                        nextStep = { this.handleNextClick }
+                    />
+                    {this.footer()}
+                </div>
+            );
+            case 8:
+            return(
+                <div id='form'>
+                    {this.title()}
+                    <Quote 
+                        companies = {{mutual,  cornerstone, aiico, sovereignTrust, zenith}}
+                        dState = {this.state}
+                        reachFinal = {this.reachFinal}
+                    />
+                    {this.footer()}
                 </div>
             );
             

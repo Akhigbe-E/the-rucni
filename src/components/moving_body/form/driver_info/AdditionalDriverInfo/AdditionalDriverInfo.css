@@ -11,11 +11,11 @@ h4 {
 }
 .control button {
     display: inline-block;
-    width: 30px;
+    width: 40px;
     padding: 0;
-    border: 1px solid grey;
+    border: 1px solid rgb(202, 91, 0);;
     box-shadow: 0px 0px 0px white;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 30px;
     color: white;
     background-color: rgb(201, 92, 3);
@@ -30,6 +30,7 @@ h4 {
 
 
 .number {
+    font-weight: 600;
     display: inline-block;
-    font-size: 105%
+    font-size: 120%
 }

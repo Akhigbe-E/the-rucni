@@ -8,10 +8,12 @@ class VehicleSummaryItem extends Component {
         this.props.editClick(this.props.vehicle)
     }
     handleDeleteClick = () => {
-        this.props.deleteClick(this.props.vehicle)
+        this.props.deleteClick(this.props.vehicle.id)
         this.props.proceed();
     }
-
+    componentDidMount(){
+        window.scrollTo(0, 0);
+    }
     render(){
         const { vehicle} = this.props
         return(
@@ -26,7 +28,8 @@ class VehicleSummaryItem extends Component {
                     <h5 id="model-id">{vehicle.model}</h5>
                 </div>
                 <div id="edit-remove-style">
-                    <button onClick={this.handleEditClick}><img src={require('./AdditionalVehicleImages/edit.png')} alt="Edit" /><div>Edit</div></button><button onClick={this.handleDeleteClick}><img src={require('./AdditionalVehicleImages/remove.png')} alt=""/><div>Remove</div></button>
+                    <button onClick={this.handleEditClick}><img src={require('./AdditionalVehicleImages/edit.png')} alt="Edit" /><div>Edit</div></button>
+                    <button onClick={this.handleDeleteClick}><img src={require('./AdditionalVehicleImages/remove.png')} alt=""/><div>Remove</div></button>
                 </div><br/>
                 </li><br/>
                 </div>
